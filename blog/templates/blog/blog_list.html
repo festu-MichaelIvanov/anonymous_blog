@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Блог</title>
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+</head>
+<style>
+    body{
+        color: red;
+    }
+</style>
+<body>
+<div class="container">
+    <h4>Блог:</h4>
+    {% for blog in blog_list %}
+        <div class="row justify-content-center mb-3">
+            <div class="card">
+                <div class="card-header">Блог №{{ blog.id }}</div>
+                <div class="card-body">
+                   {{ blog.text }}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="row justify-content-center">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Сохранить">
+        </form>
+    </div>
+</div>
+</body>
+</html>
